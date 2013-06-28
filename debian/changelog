@@ -1,0 +1,5 @@
+php-composer (1.0.0~alpha7+20130628-1) UNRELEASED; urgency=low
+
+  * Initial release (closes: #714118)
+
+ -- andrea rota <a@xelera.eu>  Fri, 28 Jun 2013 09:31:46 +0100
