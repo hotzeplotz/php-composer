@@ -1,3 +1,4 @@
 bin/composer /usr/bin/
 src/* /usr/share/php/Composer/
 res/* /usr/share/php-composer/schema/
+composer-autoload /usr/share/php/Composer/
