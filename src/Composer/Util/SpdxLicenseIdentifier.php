@@ -61,7 +61,8 @@ class SpdxLicenseIdentifier
      */
     private function initIdentifiers()
     {
-        $jsonFile = new JsonFile(__DIR__ . '/../../../res/spdx-identifier.json');
+        // Debian specific: read schema from system-wide folder
+        $jsonFile = new JsonFile('/usr/share/php-composer/schema/spdx-identifier.json');
         $this->identifiers = $jsonFile->read();
     }
 

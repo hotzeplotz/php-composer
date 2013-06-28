@@ -135,8 +135,9 @@ class JsonFile
         if (null === $data && 'null' !== $content) {
             self::validateSyntax($content, $this->path);
         }
-
-        $schemaFile = __DIR__ . '/../../../res/composer-schema.json';
+        
+        // Debian specific: read schema from system-wide folder
+        $schemaFile = '/usr/share/php-composer/schema/composer-schema.json';
         $schemaData = json_decode(file_get_contents($schemaFile));
 
         if ($schema === self::LAX_SCHEMA) {

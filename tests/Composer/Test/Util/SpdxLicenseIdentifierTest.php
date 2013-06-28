@@ -18,7 +18,8 @@ class SpdxLicenseIdentifierTest extends TestCase
                 "(LGPL-2.0 or GPL-3.0+)",
                 "(EUDatagrid and GPL-3.0+)",
             ),
-            json_decode(file_get_contents(__DIR__ . '/../../../../res/spdx-identifier.json'))
+            // Debian specific: read schema from system-wide folder
+            json_decode(file_get_contents('/usr/share/php-composer/schema/spdx-identifier.json'))
         );
 
         foreach ($valid as &$r) {
