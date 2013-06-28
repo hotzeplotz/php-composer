@@ -1,0 +1,22 @@
+From: andrea rota <a@xelera.eu>
+Date: Fri, 28 Jun 2013 22:43:24 +0100
+Subject: bootstrap from system-wide location
+
+---
+ bin/composer |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/bin/composer b/bin/composer
+index 3a1b5df..103d99e 100755
+--- a/bin/composer
++++ b/bin/composer
+@@ -5,7 +5,8 @@ if (PHP_SAPI !== 'cli') {
+     echo 'Warning: Composer should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
+ }
+ 
+-require __DIR__.'/../src/bootstrap.php';
++// Debian specific: require bootstrap from include_path
++require 'Composer/bootstrap.php';
+ 
+ use Composer\Console\Application;
+ 

@@ -1,0 +1,54 @@
+From: andrea rota <a@xelera.eu>
+Date: Fri, 28 Jun 2013 23:06:19 +0100
+Subject: update references to JSON schemas
+
+---
+ src/Composer/Json/JsonFile.php                         |    5 +++--
+ src/Composer/Util/SpdxLicenseIdentifier.php            |    3 ++-
+ tests/Composer/Test/Util/SpdxLicenseIdentifierTest.php |    3 ++-
+ 3 files changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/src/Composer/Json/JsonFile.php b/src/Composer/Json/JsonFile.php
+index f7e1a21..747e08a 100755
+--- a/src/Composer/Json/JsonFile.php
++++ b/src/Composer/Json/JsonFile.php
+@@ -135,8 +135,9 @@ class JsonFile
+         if (null === $data && 'null' !== $content) {
+             self::validateSyntax($content, $this->path);
+         }
+-
+-        $schemaFile = __DIR__ . '/../../../res/composer-schema.json';
++        
++        // Debian specific: read schema from system-wide folder
++        $schemaFile = '/usr/share/php-composer/schema/composer-schema.json';
+         $schemaData = json_decode(file_get_contents($schemaFile));
+ 
+         if ($schema === self::LAX_SCHEMA) {
+diff --git a/src/Composer/Util/SpdxLicenseIdentifier.php b/src/Composer/Util/SpdxLicenseIdentifier.php
+index 5958400..091ffae 100644
+--- a/src/Composer/Util/SpdxLicenseIdentifier.php
++++ b/src/Composer/Util/SpdxLicenseIdentifier.php
+@@ -61,7 +61,8 @@ class SpdxLicenseIdentifier
+      */
+     private function initIdentifiers()
+     {
+-        $jsonFile = new JsonFile(__DIR__ . '/../../../res/spdx-identifier.json');
++        // Debian specific: read schema from system-wide folder
++        $jsonFile = new JsonFile('/usr/share/php-composer/schema/spdx-identifier.json');
+         $this->identifiers = $jsonFile->read();
+     }
+ 
+diff --git a/tests/Composer/Test/Util/SpdxLicenseIdentifierTest.php b/tests/Composer/Test/Util/SpdxLicenseIdentifierTest.php
+index 2ed7c18..32bbf34 100644
+--- a/tests/Composer/Test/Util/SpdxLicenseIdentifierTest.php
++++ b/tests/Composer/Test/Util/SpdxLicenseIdentifierTest.php
+@@ -18,7 +18,8 @@ class SpdxLicenseIdentifierTest extends TestCase
+                 "(LGPL-2.0 or GPL-3.0+)",
+                 "(EUDatagrid and GPL-3.0+)",
+             ),
+-            json_decode(file_get_contents(__DIR__ . '/../../../../res/spdx-identifier.json'))
++            // Debian specific: read schema from system-wide folder
++            json_decode(file_get_contents('/usr/share/php-composer/schema/spdx-identifier.json'))
+         );
+ 
+         foreach ($valid as &$r) {

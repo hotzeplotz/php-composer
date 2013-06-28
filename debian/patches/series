@@ -1,0 +1,5 @@
+0001-bootstrap-from-system-wide-location.patch
+0002-added-stub-composer-autoload-folder.patch
+0003-update-references-to-JSON-schemas.patch
+0004-use-system-wide-location-for-autoloader.patch
+0006-use-usr-share-php-as-base-dir-for-autoloaded-librari.patch
