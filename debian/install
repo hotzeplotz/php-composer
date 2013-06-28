@@ -1,2 +1,2 @@
 bin/composer /usr/bin/
-src/Composer /usr/share/php/
+src/* /usr/share/php/Composer/
